@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="screen active">
+            <div class="welcome-content">
+                <h1>🎯 Quiz Master</h1>
+                <p>Test your knowledge and compete for the best score!</p>
+                <div class="button-group welcome-buttons">
+                    <button id="startBtn" class="btn btn-primary">Start Quiz</button>
+                    <button id="createBtn" class="btn btn-secondary">Create Questions</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen">
+            <div class="quiz-container">
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+
+                <!-- Question Counter -->
+                <div class="question-info">
+                    <span id="questionCounter"></span>
+                    <button id="quitBtn" class="btn btn-secondary">Quit</button>
+                </div>
+
+                <!-- Question Display -->
+                <div class="question-section">
+                    <h2 id="questionText"></h2>
+                    <span id="questionType" class="question-type"></span>
+                </div>
+
+                <!-- Options Container -->
+                <div id="optionsContainer" class="options-container"></div>
+
+                <!-- Next Button -->
+                <button id="nextBtn" class="btn btn-primary btn-next" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="results-content">
+                <h1>Quiz Complete! 🎉</h1>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="finalScore" class="score-number"></span>
+                        <span class="score-label">Points</span>
+                    </div>
+                </div>
+                <div class="results-details">
+                    <p id="totalQuestions"></p>
+                    <p id="correctAnswers"></p>
+                    <p id="incorrectAnswers"></p>
+                    <p id="scorePercentage"></p>
+                </div>
+                <div class="results-feedback" id="resultsFeedback"></div>
+                <div class="button-group">
+                    <button id="retakeBtn" class="btn btn-primary">Retake Quiz</button>
+                    <button id="homeBtn" class="btn btn-secondary">Back to Home</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Creation Screen -->
+        <div id="creationScreen" class="screen">
+            <div class="creation-container">
+                <div class="creation-header">
+                    <h2>Create Your Questions</h2>
+                    <button id="backFromCreation" class="btn btn-secondary">← Back</button>
+                </div>
+
+                <!-- Create New Question Section -->
+                <div class="creation-form-section">
+                    <h3>Add New Question</h3>
+                    <form id="questionForm">
+                        <div class="form-group">
+                            <label for="questionText">Question:</label>
+                            <textarea id="questionText" placeholder="Enter your question..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="questionTypeSelect">Question Type:</label>
+                            <select id="questionTypeSelect" required>
+                                <option value="single">Single Choice</option>
+                                <option value="multi">Multi-Select</option>
+                                <option value="fill">Fill in the Blank</option>
+                            </select>
+                        </div>
+
+                        <!-- Options Container (Dynamic) -->
+                        <div id="optionsFormContainer" class="form-group">
+                            <label>Options:</label>
+                            <div id="optionsInputContainer"></div>
+                            <button type="button" id="addOptionBtn" class="btn btn-secondary btn-sm">+ Add Option</button>
+                        </div>
+
+                        <!-- Correct Answers -->
+                        <div id="correctAnswerContainer" class="form-group">
+                            <label for="correctAnswerInput">Correct Answer:</label>
+                            <input type="text" id="correctAnswerInput" placeholder="Answer index or text" required>
+                        </div>
+
+                        <!-- Points -->
+                        <div class="form-group">
+                            <label for="pointsInput">Points:</label>
+                            <input type="number" id="pointsInput" min="1" value="10" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Create Question</button>
+                    </form>
+                </div>
+
+                <!-- My Questions List -->
+                <div class="my-questions-section">
+                    <h3>My Questions (<span id="questionsCount">0</span>)</h3>
+                    <div id="myQuestionsList" class="questions-list">
+                        <p class="empty-message">No custom questions yet. Create your first question!</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="creation-actions">
+                    <button id="startCustomQuizBtn" class="btn btn-primary" disabled>Start Quiz with My Questions</button>
+                    <button id="clearAllBtn" class="btn btn-danger">Clear All Questions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
